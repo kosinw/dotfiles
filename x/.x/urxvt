@@ -1,0 +1,36 @@
+! ┳ ┓┳━┓┓ ┃┓ ┳┏┓┓
+! ┃ ┃┃┳┛┏╋┛┃┏┛ ┃ 
+! ┇━┛┇┗┛┇ ┗┗┛  ┇ 
+!
+! author: kosi <kosinwabueze@gmail.com>
+! code: https://github.com/kosinw/dotfiles
+!
+
+# define FONT xft:uw ttyp0:pixelsize=13
+! # define FONT xft:Hack Nerd Font Mono:style=Regular:pixelsize=12
+# define JPFONT xft:zpix:pixelsize=12,xft:unifont csur:size=9:antialias=false
+
+! █▓▒░ fonts
+urxvt.font: FONT, JPFONT
+
+! █▓▒░ interface
+URxvt.scrollBar: false
+URxvt.cursorBlink: true
+URxvt.internalBorder: 30
+URxvt.letterSpace: 0.75
+URxvt.visualBell: true
+URxvt.lineSpace: 0.9
+
+! █▓▒░ extensions
+URxvt.perl-ext: default,clipboard,url-select
+URxvt.keysym.M-u: perl:url-select:select_next
+URxvt.url-select.underline: false
+URxvt.url-select.launcher: /usr/bin/xdg-open
+URxvt.url-select.autocopy: true
+URxvt.clipboard.autocopy: true
+URxvt.clipboard.copycmd: xsel -ib
+URxvt.clipboard.pastecmd: xsel -ob
+URxvt.keysym.C-v: perl:clipboard:paste
+URxvt.keysym.M-C-v: perl:clipboard:paste_escaped
+
+! vim:ft=xdefaults

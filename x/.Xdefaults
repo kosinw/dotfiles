@@ -1,0 +1,16 @@
+!  ┓ ┃┳━┓┳━┓┳━┓┳━┓┳ ┓┳  ┏┓┓┓━┓
+!  ┏╋┛┃ ┃┣━ ┣━ ┃━┫┃ ┃┃   ┃ ┗━┓
+! o┇ ┗┇━┛┻━┛┇  ┛ ┇┇━┛┇━┛ ┇ ━━┛
+!
+! author: kosi <kosinwabueze@gmail.com>
+! code: https://github.com/kosinw/dotfiles
+!
+
+! █▓▒░ X font settings
+#include ".x/xft"
+
+! █▓▒░ rxvt-unicode settings
+#include ".x/urxvt"
+
+! █▓▒░ color scheme
+#include ".x/colors/sourcerer.xres"
