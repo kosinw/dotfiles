@@ -6,7 +6,10 @@
 " code: https://github.com/kosinw/dotfiles
 "
 let configs = [
-\  "general"
+\  "general",
+\   "ui",
+\   "plugins",
+\   "plugins-conf",
 \ ]
 
 for file in configs

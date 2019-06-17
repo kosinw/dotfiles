@@ -11,7 +11,7 @@ set hidden
 
 " undo history without swapfiles
 set undofile
-set undodir=~/.config/nvim/undo
+set undodir=~/.local/share/nvim/undo
 set noswapfile
 
 " case insensitive search
