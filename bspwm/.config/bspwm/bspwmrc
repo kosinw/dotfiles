@@ -10,11 +10,10 @@
 # █▓▒░ workspace names
 bspc monitor -d www code music comm term media ssh etc
 
+echo "here"
+
 # █▓▒░ fix various X settings
 xrdb $HOME/.Xdefaults
-xsetroot -cursor_name left_ptr
-xset +fp /usr/share/fonts/misc
-xset +fp $HOME/.local/share/fonts
 
 # █▓▒░ foreground + background colors
 query=$(xrdb -query)
@@ -37,6 +36,10 @@ bspc config paddingless_monocle true
 
 # █▓▒░ rules
 bspc rule -a sxiv state=floating follow=on
+
+xsetroot -cursor_name left_ptr
+xset +fp /usr/share/fonts/misc
+xset +fp $HOME/.local/share/fonts
 
 # █▓▒░ load urxvtd + sxhkd once
 if ! pgrep -x urxvtd > /dev/null; then
