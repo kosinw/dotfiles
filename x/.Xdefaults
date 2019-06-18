@@ -13,4 +13,4 @@
 #include ".x/urxvt"
 
 ! █▓▒░ color scheme
-#include ".x/colors/sourcerer.xres"
+#include ".x/colors/sourcerer.Xcolors"

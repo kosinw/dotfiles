@@ -39,10 +39,3 @@
 URxvt.colorIT:  #719611
 URxvt.colorBD:  #d3d3d3
 URxvt.colorUL:  #528b8b
-
-rofi.color-window: bg, bg, bg
-rofi.color-normal: bg, fg, bg, fg, bg
-rofi.color-active: white, white, #000, #000, #000
-
-! vim:ft=xdefaults :
-
