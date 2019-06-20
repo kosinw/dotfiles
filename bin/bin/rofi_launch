@@ -1,0 +1,30 @@
+#!/bin/sh
+
+declare -A COMMANDS
+
+COMMANDS["clipboard"]=$'rofi -modi "clipboard:greenclip print" -show clipboard -run-command \'{cmd}\''
+COMMANDS["power"]="$HOME/bin/power_menu"
+
+function print_menu()
+{
+    for key in "${!COMMANDS[@]}"
+    do
+        echo "$key"
+    done
+}
+
+function start()
+{
+    print_menu | rofi -dmenu -i -p "launch: "
+}
+
+result="$(start)"
+
+if [ -z "$result" ]; then
+    exit
+fi
+
+if [ ! -z ${COMMANDS[$result]+isset} ]; then
+    echo "Executing: ${COMMANDS[$result]}"
+    eval ${COMMANDS[$result]}
+fi

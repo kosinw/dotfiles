@@ -36,13 +36,14 @@ padding-right = 2
 module-margin-left = 1
 module-margin-right = 1
 
-font-0 = uw ttyp0:pixelsize=13;1
+#font-0 = uw ttyp0:pixelsize=13;1
+font-0 = dina:pixelsize=12;1
 font-1 = unifont:size=8:antialias=false;0
 font-2 = Wuncon Siji:pixelsize=10
 
 modules-left = bspwm
 modules-center = mpd
-modules-right = xbacklight pulseaudio cpu memory battery wlan date
+modules-right = xbacklight pulseaudio battery wlan date
 
 tray-position = right
 tray-padding = 1
@@ -100,11 +101,11 @@ label-song-ellipsis = true
 [module/xbacklight]
 type = internal/xbacklight
 
-format = <label> <bar>
+format = <label> light <bar>
 label = 
 label-foreground = ${colors.foreground-alt}
 
-bar-width = 10
+bar-width = 7
 bar-indicator = |
 bar-indicator-foreground = ${colors.foreground}
 bar-indicator-font = 2
@@ -120,14 +121,14 @@ type = internal/cpu
 interval = 2
 format-prefix = " "
 format-prefix-foreground = ${colors.foreground-alt}
-label = %percentage:2%%
+label = cpu%percentage:2%%
 
 [module/memory]
 type = internal/memory
 interval = 2
 format-prefix = " "
 format-prefix-foreground = ${colors.foreground-alt}
-label = %percentage_used%%
+label = ram %percentage_used%%
 
 [module/wlan]
 type = internal/network
@@ -150,7 +151,7 @@ ramp-signal-foreground = ${colors.foreground-alt}
 type = internal/date
 interval = 5
 
-date = "%D"
+date = %Y-%m-%d
 
 time = %I:%M
 time-alt = %H:%M:%S
@@ -158,19 +159,19 @@ time-alt = %H:%M:%S
 format-prefix = " "
 format-prefix-foreground = ${colors.foreground-alt}
 
-label = %date% %time%
+label = %time% %date%
 
 [module/pulseaudio]
 type = internal/pulseaudio
 
-format-volume = <label-volume> <bar-volume>
+format-volume = <label-volume> vol <bar-volume>
 label-volume = 
 label-volume-foreground = ${colors.foreground-alt}
 
 label-muted =  muted
 label-muted-foreground = ${colors.foreground-alt}
 
-bar-volume-width = 10
+bar-volume-width = 7
 bar-volume-foreground-0 = ${colors.foreground}
 bar-volume-foreground-1 = ${colors.foreground}
 bar-volume-foreground-2 = ${colors.foreground} 
@@ -193,9 +194,8 @@ battery = BAT1
 adapter = ACAD
 full-at = 98
 
-format-charging = <animation-charging> <label-charging>
-
-format-discharging = <ramp-capacity> <label-discharging>
+format-charging = <animation-charging> bat <label-charging>
+format-discharging = <ramp-capacity> bat <label-discharging>
 
 format-full-prefix = " "
 format-full-prefix-foreground = ${colors.foreground-alt}

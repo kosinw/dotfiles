@@ -18,7 +18,7 @@
    darkgray:         #848484;
    scrollbarcolor:   #505050;
    /* font: "DejaVu Sans Mono Regular 14"; */
-   font: "UW Ttyp0 12";
+   font: "dina 12";
    background-color: @blackdarkest;
 }
 

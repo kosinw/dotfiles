@@ -43,13 +43,21 @@ xset +fp $HOME/.local/share/fonts
 # █▓▒░ set caps locks to escape (godsend bind)
 setxkbmap -option caps:escape
 
-# █▓▒░ load urxvtd + sxhkd once
+# █▓▒░ load urxvtd, sxhkd, greenclip, and compton once
 if ! pgrep -x urxvtd > /dev/null; then
     setsid urxvtd &
 fi
 
 if ! pgrep -x sxhkd > /dev/null; then
     setsid sxhkd &
+fi
+
+if ! pgrep x compton > /dev/null; then
+    setsid compton &
+fi
+
+if ! pgrep -x greenclip > /dev/null; then
+    greenclip daemon &
 fi
 
 # █▓▒░ load feh, polybar, and dunst on every reload

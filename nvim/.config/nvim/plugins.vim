@@ -21,6 +21,10 @@ endif
 
 call plug#begin('~/.local/share/nvim/plugged')
 
+" colorscheme
+Plug 'xero/sourcerer.vim'
+Plug 'NerdyPepper/agila.vim'
+
 " programming
 Plug 'sheerun/vim-polyglot'
 
@@ -35,5 +39,6 @@ Plug 'junegunn/fzf.vim'
 
 " tmux integration
 Plug 'roxma/vim-tmux-clipboard'
+Plug 'christoomey/vim-tmux-navigator'
 
 call plug#end()
