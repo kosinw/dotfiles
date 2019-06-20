@@ -34,10 +34,6 @@ shift + super + l
 @Print
     $HOME/bin/screenshot 
 
-#█▓▒░ Passwords menu
-super + p
-    rofi-pass
-
 #█▓▒░ 
 #█▓▒░ bspwm hotkeys
 #█▓▒░

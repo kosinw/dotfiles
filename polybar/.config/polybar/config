@@ -101,7 +101,8 @@ label-song-ellipsis = true
 type = internal/xbacklight
 
 format = <label> <bar>
-label = 
+label = 
+label-foreground = ${colors.foreground-alt}
 
 bar-width = 10
 bar-indicator = |
@@ -164,7 +165,7 @@ type = internal/pulseaudio
 
 format-volume = <label-volume> <bar-volume>
 label-volume = 
-label-volume-foreground = ${colors.foreground}
+label-volume-foreground = ${colors.foreground-alt}
 
 label-muted =  muted
 label-muted-foreground = ${colors.foreground-alt}
