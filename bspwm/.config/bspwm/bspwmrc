@@ -8,9 +8,7 @@
 # code: https://github.com/kosinw/dotfiles
 
 # █▓▒░ workspace names
-bspc monitor -d www code music comm term media ssh etc
-
-echo "here"
+bspc monitor -d www code chat term media ssh music etc
 
 # █▓▒░ fix various X settings
 xrdb $HOME/.Xdefaults
@@ -35,11 +33,15 @@ bspc config single_monocle      true
 bspc config paddingless_monocle true
 
 # █▓▒░ rules
-bspc rule -a sxiv state=floating follow=on
+bspc rule -a Sxiv state=floating follow=on
 
+# █▓▒░ various xorg related settings
 xsetroot -cursor_name left_ptr
 xset +fp /usr/share/fonts/misc
 xset +fp $HOME/.local/share/fonts
+
+# █▓▒░ set caps locks to escape (godsend bind)
+setxkbmap -option caps:escape
 
 # █▓▒░ load urxvtd + sxhkd once
 if ! pgrep -x urxvtd > /dev/null; then

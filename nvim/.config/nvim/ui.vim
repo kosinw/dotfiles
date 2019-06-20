@@ -24,7 +24,7 @@ set number
 set nowrap
 
 " higlight cursor
-set cursorline
+" set cursorline
 
 " split
 set fillchars=vert:▒

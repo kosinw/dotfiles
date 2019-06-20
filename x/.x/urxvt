@@ -6,7 +6,8 @@
 ! code: https://github.com/kosinw/dotfiles
 !
 
-# define FONT xft:uw ttyp0:pixelsize=13
+! # define FONT xft:euphon:pixelsize=16
+ # define FONT xft:uw ttyp0:pixelsize=13
 ! # define FONT xft:Hack Nerd Font Mono:style=Regular:pixelsize=12
 # define JPFONT xft:zpix:pixelsize=12,xft:unifont csur:size=9:antialias=false
 
@@ -18,7 +19,7 @@ URxvt.scrollBar: false
 URxvt.cursorBlink: true
 URxvt.internalBorder: 30
 URxvt.letterSpace: 0.75
-URxvt.visualBell: true
+URxvt.visualBell: false
 URxvt.lineSpace: 0.9
 
 ! █▓▒░ extensions
@@ -30,7 +31,7 @@ URxvt.url-select.autocopy: true
 URxvt.clipboard.autocopy: true
 URxvt.clipboard.copycmd: xsel -ib
 URxvt.clipboard.pastecmd: xsel -ob
-URxvt.keysym.C-v: perl:clipboard:paste
-URxvt.keysym.M-C-v: perl:clipboard:paste_escaped
+URxvt.keysym.M-C-v: perl:clipboard:paste
+URxvt.keysym.M-C-c: perl:clipboard:copy
 
 ! vim:ft=xdefaults

@@ -2,7 +2,7 @@
 " ┃━┛┃  ┃ ┃┃ ┳┃┃┃┃┗━┓━━┃  ┃ ┃┃┃┃┣━  ┃┏┛┃┃┃┃ 
 " ┇  ┇━┛┇━┛┇━┛┇┇┗┛━━┛  ┗━┛┛━┛┇┗┛┇  o┗┛ ┇┛ ┇
 
-colorscheme sourcerer
+" colorscheme sourcerer
 
 " lightline http://git.io/lightline (taken from git.io/.files)
 " █▓▒░ wizard status line
