@@ -23,7 +23,7 @@ call plug#begin('~/.local/share/nvim/plugged')
 
 " colorscheme
 Plug 'xero/sourcerer.vim'
-Plug 'NerdyPepper/agila.vim'
+Plug 'sbdchd/neoformat'
 
 " programming
 Plug 'sheerun/vim-polyglot'
@@ -35,7 +35,14 @@ Plug 'chrisbra/unicode.vim'
 
 " features
 Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-surround'
+Plug 'tommcdo/vim-lion'
+Plug 'junegunn/goyo.vim'
+
+" file management
 Plug 'junegunn/fzf.vim'
+Plug 'francoiscabrol/ranger.vim'
+Plug 'rbgrouleff/bclose.vim'
 
 " tmux integration
 Plug 'roxma/vim-tmux-clipboard'

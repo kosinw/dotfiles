@@ -1,0 +1,26 @@
+#!/bin/sh
+
+colors() {
+    bg=$(get_xres color0)
+    fg=$(get_xres color7)
+
+    blk=$(get_xres color0)
+    red=$(get_xres color1)
+    grn=$(get_xres color2)
+    ylw=$(get_xres color3)
+    blu=$(get_xres color4)
+    mag=$(get_xres color5)
+    cyn=$(get_xres color6)
+    wht=$(get_xres color7)
+
+    bblk=$(get_xres color8)
+    bred=$(get_xres color9)
+    bgrn=$(get_xres color10)
+    bylw=$(get_xres color11)
+    bblu=$(get_xres color12)
+    bmag=$(get_xres color13)
+    bcyn=$(get_xres color14)
+    bwht=$(get_xres color15)
+}
+
+colors

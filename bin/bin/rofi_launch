@@ -4,6 +4,7 @@ declare -A COMMANDS
 
 COMMANDS["clipboard"]=$'rofi -modi "clipboard:greenclip print" -show clipboard -run-command \'{cmd}\''
 COMMANDS["power"]="$HOME/bin/power_menu"
+COMMANDS["network"]="networkmanager_dmenu"
 
 function print_menu()
 {

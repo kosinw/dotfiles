@@ -9,6 +9,7 @@ let configs = [
 \  "general",
 \   "ui",
 \   "plugins",
+\   "binds",
 \   "plugins-conf",
 \ ]
 

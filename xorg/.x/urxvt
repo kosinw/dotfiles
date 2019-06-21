@@ -22,6 +22,7 @@ URxvt.internalBorder: 30
 URxvt.letterSpace: 0.75
 URxvt.visualBell: false
 URxvt.lineSpace: 0.9
+URxvt*termName: xterm-256color
 
 ! █▓▒░ extensions
 URxvt.perl-ext: default,clipboard,url-select,resize-font

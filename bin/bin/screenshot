@@ -10,12 +10,12 @@ FILENAME=$SCREENSHOTS_DIR/$STAMP.scrot.png
 if [[ "$1" = "-s" ]] || [[ "$1" = "--selection" ]]; then 
     # Selection to file
     notify-send 'Select area to capture.' --urgency low
-    maim -u -m 2 -s $FILENAME
+    maim -u -s $FILENAME
     if [[ "$?" = "0" ]]; then
             notify-send "Screenshot taken." --urgency low
     fi
 else
     # Full screenshot
-    maim -u -m 2 $FILENAME
+    maim -u $FILENAME
     notify-send "Screenshot taken." --urgency low
 fi

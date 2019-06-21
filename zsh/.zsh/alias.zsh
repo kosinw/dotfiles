@@ -17,6 +17,11 @@ alias grep='grep --color'
 alias mixer='alsamixer'
 
 #█▓▒░ tmux
+alias tmux='tmux -2'
 alias t='tmux'
 alias tk='tmux kill-session -t'
 alias ta='tmux a -t'
+
+#█▓▒░ yay / pacman
+alias browser='yay -Qq | fzf --preview "yay -Qil {}" --layout=reverse --bind "enter:execute(yay -Qil {} | $PAGER)"'
+alias inst='pacman -Slq | fzf -m --preview "pacman -Si {}" | xargs -r sudo pacman -S --noconfirm'
