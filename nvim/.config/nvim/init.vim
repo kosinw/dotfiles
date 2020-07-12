@@ -76,6 +76,18 @@ nnoremap <A-s> :%s//gI<Left><Left><Left>
 " Save file as sudo when no sudo permissions
 cmap w!! w !sudo tee > /dev/null %
 
+" Fix line wrapping
+noremap j gj
+noremap k gk
+
+" DEBUGGING: Figure out what syntax element highlighted thing is
+map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
+\ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
+\ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
+
+" Fuzzy file finder
+nnoremap <C-p> :Files<CR>
+
 " Toggle netrw sidebar
 noremap <silent> <A-f> :call ToggleNetrw()<CR>
 " }}}
@@ -92,9 +104,6 @@ endif
 
 " vim-plug <https://github.com/junegunn/vim-plug>
 call plug#begin('~/.local/share/nvim/plugged')
-
-" startup menu
-Plug 'mhinz/vim-startify'
 
 " automatically close xhtml tags
 Plug 'alvan/vim-closetag'
@@ -140,7 +149,8 @@ set ignorecase
 set nu
 
 " Colorschemes
-" set termguicolors
+set termguicolors
+colorscheme pasteldark
 
 " Fix tab settings
 set shiftwidth=4
@@ -183,28 +193,4 @@ autocmd WinEnter * if winnr('$') == 1 && getbufvar(winbufnr(winnr()), "&filetype
 let g:NetrwIsOpen=0
 " }}}
 " --- Plugin configurations --- {{{
-" startify custom header
-let s:header = [
-			\ '',
-			\ ' ██ ▄█▀ ▒█████    ██████  ██▓ ███▄    █  █     █░',
-			\ ' ██▄█▒ ▒██▒  ██▒▒██    ▒ ▓██▒ ██ ▀█   █ ▓█░ █ ░█░',
-			\ '▓███▄░ ▒██░  ██▒░ ▓██▄   ▒██▒▓██  ▀█ ██▒▒█░ █ ░█ ',
-			\ '▓██ █▄ ▒██   ██░  ▒   ██▒░██░▓██▒  ▐▌██▒░█░ █ ░█ ',
-			\ '▒██▒ █▄░ ████▓▒░▒██████▒▒░██░▒██░   ▓██░░░██▒██▓ ',
-			\ '▒ ▒▒ ▓▒░ ▒░▒░▒░ ▒ ▒▓▒ ▒ ░░▓  ░ ▒░   ▒ ▒ ░ ▓░▒ ▒  ',
-			\ '░ ░▒ ▒░  ░ ▒ ▒░ ░ ░▒  ░ ░ ▒ ░░ ░░   ░ ▒░  ▒ ░ ░  ',
-			\ '░ ░░ ░ ░ ░ ░ ▒  ░  ░  ░   ▒ ░   ░   ░ ░   ░   ░  ',
-			\ '░  ░       ░ ░        ░   ░           ░     ░    ',
-			\ '                                                 ',
-			\ '',
-			\ ]
-
-function! s:center(lines) abort
-  let longest_line   = max(map(copy(a:lines), 'strwidth(v:val)'))
-  let centered_lines = map(copy(a:lines),
-        \ 'repeat(" ", (&columns / 2) - (longest_line / 2)) . v:val')
-  return centered_lines
-endfunction
-
-let g:startify_custom_header=s:center(s:header)
 " }}}
