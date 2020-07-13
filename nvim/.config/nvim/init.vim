@@ -17,9 +17,6 @@
 let mapleader=" "
 " }}}
 " --- Autocmds --- {{{
-" Autocenter document on insert
-autocmd InsertEnter * norm zz
-
 " Remove trailing whitespace on save
 autocmd BufWritePre * %s/\s\+$//e
 
@@ -33,6 +30,12 @@ autocmd BufEnter * set fo-=c fo-=r fo-=o
 augroup filetype_vim
     autocmd!
     autocmd FileType vim setlocal foldmethod=marker
+augroup END
+
+" Disable <C-l> in netrw (its annoying)
+augroup netrw_mappings
+	autocmd!
+	autocmd filetype netrw call NetrwMapping()
 augroup END
 " }}}
 " --- Keybinds --- {{{
@@ -76,9 +79,13 @@ nnoremap <A-s> :%s//gI<Left><Left><Left>
 " Save file as sudo when no sudo permissions
 cmap w!! w !sudo tee > /dev/null %
 
+" Shortcuts for save and quit
+nnoremap <leader>w :w<CR>
+nnoremap <leader>q :wq!<CR>
+
 " Fix line wrapping
-noremap j gj
-noremap k gk
+noremap <silent>j gj
+noremap <silent>k gk
 
 " DEBUGGING: Figure out what syntax element highlighted thing is
 map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
@@ -86,10 +93,16 @@ map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans
 \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
 
 " Fuzzy file finder
-nnoremap <C-p> :Files<CR>
+nnoremap <expr> <C-p> (expand('%') =~ 'NERD_tree' ? "\<C-w>\<C-w>" : '').":Files\<cr>"
+nnoremap <expr> <leader>b (expand('%') =~ 'NERD_tree' ? "\<C-w>\<C-w>" : '').":Buffers\<cr>"
 
-" Toggle netrw sidebar
-noremap <silent> <A-f> :call ToggleNetrw()<CR>
+" Toggle NERDTree sidebar
+nnoremap <A-f> :NERDTreeToggle<CR>
+
+" netrw key mappings
+function! NetrwMapping()
+	noremap <buffer> <C-l> <Nop>
+endfunction
 " }}}
 " --- Plugins --- {{{
 " Add .local/share/nvim to executable path
@@ -120,6 +133,9 @@ Plug 'tpope/vim-commentary'
 " quoting + surrounding
 Plug 'tpope/vim-surround'
 
+" netrw is bad, just use a real browser
+Plug 'preservim/nerdtree'
+
 " alignment
 Plug 'tommcdo/vim-lion'
 
@@ -139,14 +155,26 @@ set clipboard+=unnamedplus
 " Enable mouse support (primarily for scrolling)
 set mouse=a
 
+" Cursor line
+set cursorline
+
+" Scroll the line before the bottom
+set scrolloff=1
+
 " Syntax highlighting (without overwriting syntax settings)
 syntax enable
 
 " Disable case sensitive searching
 set ignorecase
 
+" Incremental search
+set incsearch
+
 " Enable line numbers
 set nu
+
+" Disable line wrapping
+set nowrap
 
 " Colorschemes
 set termguicolors
@@ -168,29 +196,12 @@ set splitbelow splitright
 let g:netrw_banner=0
 let g:netrw_liststyle=3
 let g:netrw_browse_split=4
-let g:netrw_winsize=20
-
-" Allow for netrw to be toggled
-function! ToggleNetrw()
-	if g:NetrwIsOpen
-		let i = bufnr("$")
-		while (i >= 1)
-			if (getbufvar(i, "&filetype") == "netrw")
-				silent exe "bwipeout " . i
-			endif
-			let i-=1
-		endwhile
-		let g:NetrwIsOpen=0
-	else
-		let g:NetrwIsOpen=1
-		silent Lexplore
-	endif
-endfunction
-
-" Close Netrw if it's the only buffer open
-autocmd WinEnter * if winnr('$') == 1 && getbufvar(winbufnr(winnr()), "&filetype") == "netrw" || &buftype == 'quickfix' |q|endif
-
-let g:NetrwIsOpen=0
+let g:netrw_winsize=25
 " }}}
 " --- Plugin configurations --- {{{
+" Close NERDTree if its the only buffer left
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
+" Show hidden files by default
+let NERDTreeShowHidden=1
 " }}}
