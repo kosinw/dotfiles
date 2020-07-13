@@ -93,7 +93,7 @@ hi PMenuThumb             guifg=NONE    guibg=#a4a6a8 guisp=#a4a6a8 gui=NONE    
 hi MatchParen             guifg=#ffdec0 guibg=NONE    guisp=NONE    gui=bold      ctermfg=1    ctermbg=NONE cterm=bold
 hi Repeat                 guifg=#dea0ff guibg=NONE    guisp=NONE    gui=bold      ctermfg=183  ctermbg=NONE cterm=bold
 hi SpellBad               guifg=#F9F9FF guibg=#192224 guisp=#192224 gui=underline ctermfg=189  ctermbg=235  cterm=underline
-hi Directory              guifg=#536991 guibg=NONE    guisp=NONE    gui=bold      ctermfg=60   ctermbg=NONE cterm=bold
+hi Directory              guifg=#686868 guibg=NONE    guisp=NONE    gui=bold      ctermfg=60   ctermbg=NONE cterm=bold
 hi Type                   guifg=#dea0ff guibg=NONE    guisp=NONE    gui=bold      ctermfg=183  ctermbg=NONE cterm=bold
 " hi Macro                guifg=#BD9800 guibg=NONE    guisp=NONE    gui=NONE      ctermfg=1    ctermbg=NONE cterm=NONE
 hi Underlined             guifg=#F9F9FF guibg=#192224 guisp=#192224 gui=underline ctermfg=189  ctermbg=235  cterm=underline
@@ -214,7 +214,7 @@ function! InactiveLine()
   " Set empty statusline and colors
   let statusline  = ""
   let statusline .= "%#Inactive# "
-  let statusline .= "%f "
+  let statusline .= "%{expand('%:t')} "
   let statusline .= "%#Base#"
 
   let statusline .= "%="

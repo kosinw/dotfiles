@@ -32,10 +32,10 @@ augroup filetype_vim
     autocmd FileType vim setlocal foldmethod=marker
 augroup END
 
-" Disable <C-l> in netrw (its annoying)
-augroup netrw_mappings
+" Enable <tab> for emmet completion in xhtml/html files
+augroup emmet_tab
 	autocmd!
-	autocmd filetype netrw call NetrwMapping()
+	autocmd filetype html,xhtml,phtml,jsx,svelte,vue imap <expr> <tab> emmet#expandAbbrIntelligent("\<tab>")
 augroup END
 " }}}
 " --- Keybinds --- {{{
@@ -95,14 +95,13 @@ map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans
 " Fuzzy file finder
 nnoremap <expr> <C-p> (expand('%') =~ 'NERD_tree' ? "\<C-w>\<C-w>" : '').":Files\<cr>"
 nnoremap <expr> <leader>b (expand('%') =~ 'NERD_tree' ? "\<C-w>\<C-w>" : '').":Buffers\<cr>"
+nnoremap <expr> <leader>h (expand('%') =~ 'NERD_tree' ? "\<C-w>\<C-w>" : '').":History\<cr>"
+
+" Set <leader>rc to edit dotfiles
+nnoremap <expr> <leader>rc (expand('%') =~ 'NERD_tree' ? "\<C-w>\<C-w>" : '').":Files ~/dotfiles\<cr>"
 
 " Toggle NERDTree sidebar
 nnoremap <A-f> :NERDTreeToggle<CR>
-
-" netrw key mappings
-function! NetrwMapping()
-	noremap <buffer> <C-l> <Nop>
-endfunction
 " }}}
 " --- Plugins --- {{{
 " Add .local/share/nvim to executable path
@@ -176,6 +175,9 @@ set nu
 " Disable line wrapping
 set nowrap
 
+" Disable mode at bottom
+set noshowmode
+
 " Colorschemes
 set termguicolors
 colorscheme pasteldark
@@ -204,4 +206,5 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 
 " Show hidden files by default
 let NERDTreeShowHidden=1
+
 " }}}
