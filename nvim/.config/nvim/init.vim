@@ -12,6 +12,9 @@
 "
 " author: kosinw <kosinwabueze@gmail.com>
 
+" Disable vi compatibility mode
+set nocompatible
+
 " --- Leader key --- {{{
 " Set the <leader> key
 let mapleader=" "
@@ -60,10 +63,11 @@ nnoremap <A-d> :!mkdir<Space>
 nnoremap <A-m> :!mv<Space>%<Space>
 
 " Split navigation
-map <A-h> <C-w>h
-map <A-l> <C-w>l
-map <A-j> <C-w>j
-map <A-k> <C-w>k
+nnoremap <silent> <A-h> :TmuxNavigateLeft<cr>
+nnoremap <silent> <A-j> :TmuxNavigateDown<cr>
+nnoremap <silent> <A-k> :TmuxNavigateUp<cr>
+nnoremap <silent> <A-l> :TmuxNavigateRight<cr>
+nnoremap <silent> <A-\> :TmuxNavigatePrevious<cr>
 
 " Split creation
 nnoremap <leader>\ :vsplit<CR>
@@ -96,12 +100,16 @@ map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans
 nnoremap <expr> <C-p> (expand('%') =~ 'NERD_tree' ? "\<C-w>\<C-w>" : '').":Files\<cr>"
 nnoremap <expr> <leader>b (expand('%') =~ 'NERD_tree' ? "\<C-w>\<C-w>" : '').":Buffers\<cr>"
 nnoremap <expr> <leader>h (expand('%') =~ 'NERD_tree' ? "\<C-w>\<C-w>" : '').":History\<cr>"
+nnoremap <expr> <leader>/ (expand('%') =~ 'NERD_tree' ? "\<C-w>\<C-w>" : '').":BLines\<cr>"
 
 " Set <leader>rc to edit dotfiles
 nnoremap <expr> <leader>rc (expand('%') =~ 'NERD_tree' ? "\<C-w>\<C-w>" : '').":Files ~/dotfiles\<cr>"
 
+" Reload .vimrc
+nnoremap <leader>R :so $MYVIMRC<CR>
+
 " Toggle NERDTree sidebar
-nnoremap <A-f> :NERDTreeToggle<CR>
+nnoremap <A-f> :exe "NERDTreeToggle" escape(getcwd(), ' ')<CR>
 " }}}
 " --- Plugins --- {{{
 " Add .local/share/nvim to executable path
@@ -140,6 +148,9 @@ Plug 'tommcdo/vim-lion'
 
 " jump to location
 Plug 'justinmk/vim-sneak'
+
+" vim + tmux integration
+Plug 'christoomey/vim-tmux-navigator'
 
 " fzf
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
@@ -207,4 +218,6 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 " Show hidden files by default
 let NERDTreeShowHidden=1
 
+" Custom tmux-navigator mappings
+let g:tmux_navigator_no_mappings = 1
 " }}}
