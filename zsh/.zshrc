@@ -128,7 +128,7 @@ lfcd () {
 bindkey -s '^o' 'lfcd\n'
 
 # Change directories using fzf <C-f>
-bindkey -s '^f' 'cd "$(dirname "$(fzf)")"\n'
+bindkey -s '^p' 'cd "$(dirname "$(fzf)")"\n'
 
 # Prompt
 PROMPT="%{$fg[magenta]%}%n%{$fg[yellow]%}@%{$fg[green]%}%M%{$fg[magenta]%}%{$reset_color%}%b :: %{$fg[faint]%}%~ %{$reset_color%}%b» "
