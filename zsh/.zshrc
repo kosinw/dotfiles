@@ -99,10 +99,6 @@ setopt SHARE_HISTORY
 # turn off annoying beep
 unsetopt BEEP
 
-# --- zextra ---
-# Source .zprofile (to keep unwmanted things like conda init)
-[[ -e ~/.zextra ]] && emulate sh -c 'source ~/.zextra'
-
 # --- Prompt ---
 # Enable colors and change prompt:
 autoload -U colors && colors	# Load colors
@@ -117,9 +113,41 @@ zmodload zsh/complist
 compinit
 _comp_options+=(globdots)		# Include hidden files.
 
-# Prompt
-PROMPT="%{$fg[blue]%}ンワブイジ %B%{$fg[red]%}[%{$fg[magenta]%}%n%{$fg[yellow]%}@%{$fg[green]%}%M%{$fg[magenta]%}%{$fg[red]%}]%{$reset_color%}$%b "
-RPROMPT="%{$fg[faint]%}%~"
+# Use lf to switch directories and bind it to ctrl-o
+lfcd () {
+    tmp="$(mktemp)"
+    lf -last-dir-path="$tmp" "$@"
+    if [ -f "$tmp" ]; then
+        dir="$(cat "$tmp")"
+        rm -f "$tmp" >/dev/null
+        [ -d "$dir" ] && [ "$dir" != "$(pwd)" ] && cd "$dir"
+    fi
+}
 
-# --- Fast syntax highlighting ---
-source ~/.config/zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
+# Change directories using lf <C-o>
+bindkey -s '^o' 'lfcd\n'
+
+# Change directories using fzf <C-f>
+bindkey -s '^f' 'cd "$(dirname "$(fzf)")"\n'
+
+# Prompt
+PROMPT="%{$fg[magenta]%}%n%{$fg[yellow]%}@%{$fg[green]%}%M%{$fg[magenta]%}%{$reset_color%}%b :: %{$fg[faint]%}%~ %{$reset_color%}%b» "
+
+# source the plugin https://github.com/zsh-users/zsh-syntax-highlighting
+source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/home/kosi/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/home/kosi/anaconda3/etc/profile.d/conda.sh" ]; then
+        . "/home/kosi/anaconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/home/kosi/anaconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+
