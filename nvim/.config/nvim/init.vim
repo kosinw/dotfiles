@@ -146,9 +146,6 @@ Plug 'preservim/nerdtree'
 " alignment
 Plug 'tommcdo/vim-lion'
 
-" jump to location
-Plug 'justinmk/vim-sneak'
-
 " vim + tmux integration
 Plug 'christoomey/vim-tmux-navigator'
 

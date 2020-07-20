@@ -29,9 +29,6 @@ _fzf_compgen_dir() {
 # Use fd for fzf
 export FZF_DEFAULT_COMMAND='fd --hidden --follow --no-ignore --exclude ".git"'
 
-# show tree output when changin dirs
-export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -200'"
-
 # --- Environment ---
 # include bin directory if it exists
 if [ -d "$HOME/bin" ]; then
@@ -61,6 +58,25 @@ man() {
     LESS_TERMCAP_ue=$'\E[0m' \
     LESS_TERMCAP_us=$'\E[04;38;5;146m' \
     man "$@"
+}
+
+# has
+has() {
+  local verbose=false
+  if [[ $1 == '-v' ]]; then
+    verbose=true
+    shift
+  fi
+  for c in "$@"; do c="${c%% *}"
+    if ! command -v "$c" &> /dev/null; then
+      [[ "$verbose" == true ]] && err "$c not found"
+      return 1
+    fi
+  done
+}
+
+err() {
+  printf '\e[31m%s\e[0m\n' "$*" >&2
 }
 
 # verbosity
@@ -125,10 +141,22 @@ lfcd () {
 }
 
 # Change directories using lf <C-o>
-bindkey -s '^o' 'lfcd\n'
+if has "lf"; then
+	bindkey -s '^o' 'lfcd\n'
+fi
 
-# Change directories using fzf <C-f>
-bindkey -s '^p' 'cd "$(dirname "$(fzf)")"\n'
+# Change directories using fzf <C-p>
+if has "fzf"; then
+	bindkey -s '^p' 'cd "$(dirname "$(fzf)")"\n'
+fi
+
+# Fix ls colors
+export LS_COLORS="fi=01;37:di=01;34:ex=01;32:ln=37\
+:or=01;30:mi=00:mh=31\
+:pi=33:so=43;30:do=35\
+:bd=35;01:cd=35\
+:su=37;41:sg=30;43:ca=30;41\
+:tw=07;34:ow=30;44:st=30;44"
 
 # Prompt
 PROMPT="%{$fg[magenta]%}%n%{$fg[yellow]%}@%{$fg[green]%}%M%{$fg[magenta]%}%{$reset_color%}%b :: %{$fg[faint]%}%~ %{$reset_color%}%b» "
